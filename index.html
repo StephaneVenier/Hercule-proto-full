@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Accueil — Hercule Project</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .hero.is-bg{position:relative;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.6);padding:32px;border-radius:16px;overflow:hidden}
+    .hero.is-bg .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.68))}
+    .hero.is-bg .content{position:relative;z-index:1;max-width:980px}
+    .hero.is-bg .title{color:#fff}
+    .hero.is-bg .lead{color:#e5e7eb}
+  </style>
 </head>
 <body>
   <nav class="nav">
@@ -25,13 +32,16 @@
   </nav>
   <div class="wrap">
 
-  <section class="hero" style="background:url('assets/img/hero.jpg') center/cover no-repeat;min-height:60vh;display:flex;flex-direction:column;gap:12px;align-items:flex-start;justify-content:flex-end">
+  <section class="hero is-bg" style="background:url('assets/img/hero.jpg') center/cover no-repeat;min-height:60vh;display:flex;flex-direction:column;gap:12px;align-items:flex-start;justify-content:flex-end">
+    <div class="scrim"></div>
+    <div class="content">
     <h1 class="title"><span class="accent">Hercule Project</span> — Défis 100% virtuels (pour l’instant)</h1>
     <p class="lead">Niveaux individuels, périples mythologiques en équipe, et bientôt des compétitions en extérieur.</p>
     <div class="cta-row">
       <a class="btn primary" href="participer.html">Voir les forfaits</a>
       <a class="btn" href="concept.html">Découvrir le concept</a>
     </div>
+  </div>
   </section>
     <footer>© Hercule Project — Univers & défis sportifs • 2025</footer>
   </div>
