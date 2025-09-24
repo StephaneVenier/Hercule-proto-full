@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Défi d’équipe — Hercule — Hercule Project</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="row">
+      <div class="brand"><img src="assets/img/logo-hercule.jpg" alt="Hercule Project" style="height:36px;vertical-align:middle;border-radius:6px;margin-right:8px">Hercule <span class="accent">Project</span></div>
+      <div class="links">
+        <a class="btn" href="index.html">Accueil</a>
+        <a class="btn" href="concept.html">Concept</a>
+        <a class="btn" href="niveaux/index.html">Niveaux</a>
+        <a class="btn" href="defis-equipes/index.html">Défis d'équipes</a>
+        <a class="btn" href="entreprises.html">Entreprises</a>
+        <a class="btn primary" href="participer.html">Participer</a>
+        <a class="btn" href="faq.html">FAQ</a>
+        <a class="btn" href="voter.html">Voter</a>
+        <a class="btn" href="boutique.html">Boutique</a>
+      </div>
+    </div>
+  </nav>
+  <div class="wrap">
+
+  <section class="hero">
+    <h1 class="title">Défi d’équipe — <span class="accent">Hercule</span></h1>
+    <p class="lead">Mode déplacement au choix : <u>marche</u> ou <u>course</u> ou <u>vélo</u> (pas de mix sur un même défi).</p>
+  </section>
+  <section class="section" id="defi-map">
+    <div class="map-box" style="position:relative;aspect-ratio:1152/768;border:1px solid #3f3f46;border-radius:16px;overflow:hidden;background:#0a0a0b;">
+      <img src="assets/img/periple-hercule.png" alt="Carte du périple d'Hercule" style="position:absolute;inset:0;width:100%;height:100%;object-fit:fill;filter:contrast(1.05) saturate(1.05)">
+      <svg viewBox="0 0 1 1" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%">
+        <polyline points="0.338,0.468 0.358,0.454 0.377,0.446 0.4,0.437 0.423,0.428 0.449,0.422 0.474,0.42 0.496,0.427 0.515,0.444 0.531,0.468 0.544,0.498 0.552,0.533 0.558,0.57 0.561,0.612 0.563,0.654 0.566,0.693 0.573,0.73 0.584,0.761 0.599,0.785 0.618,0.801 0.64,0.811 0.665,0.813 0.69,0.807 0.714,0.799 0.736,0.791 0.756,0.782" style="fill:none;stroke:rgba(0,0,0,0);stroke-width:0.02;vector-effect:non-scaling-stroke"></polyline>
+      </svg>
+      <div id="marker" style="position:absolute;width:18px;height:18px;border-radius:50%;background:#ef4444;border:3px solid #fff;box-shadow:0 2px 12px rgba(0,0,0,.45);transform:translate(-50%,-50%)"></div>
+    </div>
+    <div class="legend" style="margin-top:12px">
+      <div style="display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center">
+        <input id="slider" type="range" min="0" max="1500" value="0" step="1" />
+        <div class="price"><span id="km">0</span><span style="font-size:18px"> / 1500 km</span></div>
+      </div>
+      <p class="meta" style="margin-top:8px">Glissez la barre ou cliquez sur la carte pour déplacer le pion.</p>
+    </div>
+  </section>
+  <script>
+    const poly = [[0.338, 0.468], [0.358, 0.454], [0.377, 0.446], [0.4, 0.437], [0.423, 0.428], [0.449, 0.422], [0.474, 0.42], [0.496, 0.427], [0.515, 0.444], [0.531, 0.468], [0.544, 0.498], [0.552, 0.533], [0.558, 0.57], [0.561, 0.612], [0.563, 0.654], [0.566, 0.693], [0.573, 0.73], [0.584, 0.761], [0.599, 0.785], [0.618, 0.801], [0.64, 0.811], [0.665, 0.813], [0.69, 0.807], [0.714, 0.799], [0.736, 0.791], [0.756, 0.782]];
+    let seg=[],cum=[0],total=0;
+    for(let i=0;i<poly.length-1;i++){
+      const dx=poly[i+1][0]-poly[i][0],dy=poly[i+1][1]-poly[i][1];
+      const L=Math.hypot(dx,dy);seg.push(L);total+=L;cum.push(total);
+    }
+    function pointAt(t){
+      const d=t*total;
+      for(let i=0;i<seg.length;i++){
+        if(d<=cum[i+1]||i===seg.length-1){
+          const u=(d-cum[i])/(seg[i]||1e-9);
+          return [poly[i][0]+(poly[i+1][0]-poly[i][0])*u, poly[i][1]+(poly[i+1][1]-poly[i][1])*u];
+        }
+      }
+      return poly[poly.length-1];
+    }
+    const box=document.querySelector('#defi-map .map-box'), marker=document.getElementById('marker'), slider=document.getElementById('slider'), kmEl=document.getElementById('km');
+    function render(){
+      const t=Number(slider.value)/Number(slider.max);
+      const p=pointAt(t); const r=box.getBoundingClientRect();
+      marker.style.left=(p[0]*r.width)+'px'; marker.style.top=(p[1]*r.height)+'px';
+      kmEl.textContent=Number(slider.value).toFixed(0);
+    }
+    slider.addEventListener('input',render); window.addEventListener('load',render); window.addEventListener('resize',render);
+    function setFromClient(x,y){
+      const r=box.getBoundingClientRect();
+      const px=(x-r.left)/r.width, py=(y-r.top)/r.height;
+      let best=1e9,along=0;
+      for(let i=0;i<poly.length-1;i++){
+        const x1=poly[i][0],y1=poly[i][1],x2=poly[i+1][0],y2=poly[i+1][1];
+        const vx=x2-x1,vy=y2-y1,wx=px-x1,wy=py-y1;
+        const c1=vx*wx+vy*wy,c2=vx*vx+vy*vy;
+        let t=c2>0?Math.max(0,Math.min(1,c1/c2)):0;
+        const qx=x1+vx*t,qy=y1+vy*t;
+        const d=Math.hypot(qx-px,qy-py);
+        const a=cum[i]+seg[i]*t;
+        if(d<best){best=d;along=a;}
+      }
+      const norm=along/total;
+      slider.value=Math.round(norm*Number(slider.max));
+      render();
+    }
+    box.addEventListener('pointerdown',e=>{box.setPointerCapture(e.pointerId);setFromClient(e.clientX,e.clientY);});
+    box.addEventListener('pointermove',e=>{if(e.pressure>0) setFromClient(e.clientX,e.clientY);});
+
+  </script>
+    <footer>© Hercule Project — Univers & défis sportifs • 2025</footer>
+  </div>
+</body>
+</html>
