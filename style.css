@@ -40,3 +40,7 @@ a{color:inherit;text-decoration:none}
 .faq summary{cursor:pointer;font-weight:700}
 footer{margin-top:30px;color:#7e7e8a;font-size:12px;text-align:center}
 nav .links a{margin-left:8px}
+
+.teaser{margin:24px 0;padding:16px;border:1px solid rgba(227,179,65,.28);border-radius:14px;background:linear-gradient(180deg,rgba(227,179,65,.06),rgba(15,17,23,.9))}
+.teaser .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.teaser .chip{font-size:12px;padding:4px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.14);color:#c9cacc}
