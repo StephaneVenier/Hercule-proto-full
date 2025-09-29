@@ -4,27 +4,214 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Concept — Hercule Project</title>
+  <meta name="description" content="Le concept des 12 Travaux d’Hercule revisités en défis sportifs : inscription 9,90 €, 12 épreuves, XP, Jetons d’Hercule et récompenses.">
   <link rel="stylesheet" href="style.css">
+  <style>
+    :root{
+      --gold:#e3b341;
+      --ink:#0f1117;
+      --wash:#151823;
+      --muted:#a1a1aa;
+      --ok:#22c55e;
+      --cta:#e3b341;
+    }
+    body{background:#0d0f16;color:#e5e7eb;line-height:1.6;margin:0}
+    .container{max-width:1080px;margin:0 auto;padding:24px}
+    .hero{position:relative;margin:8px 0 20px;padding:28px;border:1px solid rgba(227,179,65,.28);border-radius:20px;background:linear-gradient(180deg,rgba(227,179,65,.06),rgba(15,17,23,.9))}
+    .badge{display:inline-flex;gap:8px;align-items:center;font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid rgba(227,179,65,.35);background:rgba(227,179,65,.06);color:#f5e9c5}
+    h1{font-size:clamp(28px,4vw,40px);margin:8px 0 6px;letter-spacing:.3px}
+    .lead{color:#c9cad3;font-size:clamp(16px,2.2vw,18px)}
+    .cta{display:inline-block;margin-top:14px;padding:12px 18px;border-radius:12px;background:var(--cta);color:#1a1405;font-weight:700;text-decoration:none;border:1px solid rgba(255,255,255,.06)}
+    .grid{display:grid;gap:16px}
+    .cols-3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    .card{border:1px solid rgba(227,179,65,.18);border-radius:16px;padding:16px;background:linear-gradient(180deg,#0f1117,rgba(8,10,14,.9))}
+    .card h3{margin:0 0 6px}
+    .muted{color:var(--muted)}
+    .blockquote{border-left:3px solid var(--gold);padding:14px 16px;margin:14px 0;border-radius:8px;background:rgba(227,179,65,.06)}
+    .step{display:flex;gap:12px;align-items:flex-start}
+    .step .num{flex:0 0 36px;height:36px;border-radius:10px;background:rgba(227,179,65,.1);display:flex;align-items:center;justify-content:center;border:1px solid rgba(227,179,65,.3);font-weight:700;color:#f5e9c5}
+    .list{margin:8px 0 0 0;padding-left:18px}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid rgba(227,179,65,.25);border-radius:999px;background:rgba(227,179,65,.08);color:#f5e9c5;font-size:14px}
+    .faq details{border:1px solid rgba(227,179,65,.2);border-radius:12px;padding:12px;background:#0e121b}
+    .faq summary{cursor:pointer;font-weight:600}
+    .center{text-align:center}
+    footer{opacity:.8;font-size:13px;margin:24px 0 8px}
+    .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(227,179,65,.25),transparent);margin:18px 0}
+    .tiny{font-size:12px}
+    @media (prefers-reduced-motion:no-preference){
+      .cta{transition:transform .15s ease, box-shadow .15s ease}
+      .cta:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(227,179,65,.2)}
+    }
+  </style>
 </head>
 <body>
-  <nav class="nav">
-    <div class="row">
-      <div class="brand"><img src="assets/img/logo-hercule.jpg" alt="Hercule Project" style="height:36px;vertical-align:middle;border-radius:6px;margin-right:8px">Hercule <span class="accent">Project</span></div>
-      <div class="links">
-        <a class="btn" href="index.html">Accueil</a>
-        <a class="btn" href="concept.html">Concept</a>
-        <a class="btn" href="niveaux/index.html">Niveaux</a>
-        <a class="btn" href="defis-equipes/index.html">Défis d'équipes</a>
-        <a class="btn" href="entreprises.html">Entreprises</a>
-        <a class="btn primary" href="participer.html">Participer</a>
-        <a class="btn" href="faq.html">FAQ</a>
-        <a class="btn" href="voter.html">Voter</a>
-        <a class="btn" href="boutique.html">Boutique</a>
+  <header class="container hero">
+    <div class="badge">🏛️ Hercule Project · Concept</div>
+    <h1>Les 12 Travaux d’Hercule… revisités en défis sportifs</h1>
+    <p class="lead">Inscris-toi (9,90 €), relève 12 épreuves inspirées de la mythologie, gagne de l’XP et des <strong>Jetons d’Hercule</strong> pour décrocher des récompenses.</p>
+    <a href="#inscription" class="cta">Je relève le défi — 9,90 €</a>
+  </header>
+
+  <main class="container">
+    <!-- Intro immersive -->
+    <section id="intro">
+      <div class="blockquote">
+        <p><strong>« Moi, Héraclès — que vous appelez Hercule — je reviens du fond des âges.</strong> Jadis, j’ai vaincu le lion de Némée, capturé le sanglier d’Érymanthe et accompli douze épreuves que nul homme n’osait affronter.<br>
+        <strong>Aujourd’hui, c’est à ton tour.</strong><br>
+        Les monstres ont changé : ils ne vivent plus dans les forêts, mais dans tes limites, tes doutes, ta fatigue.<br>
+        <strong>Relève mes nouveaux Travaux.</strong> Douze défis pour forger ton endurance, ta force et ton courage.<br>
+        Si tu triomphes, tu gagneras honneur, expérience et les <em>Jetons d’Hercule</em>.<br>
+        <strong>Entres-tu dans la légende ?</strong> »</p>
       </div>
-    </div>
-  </nav>
-  <div class="wrap">
-<section class="section"><h1 class="title">Concept</h1><p class="lead">Contenu à compléter.</p></section>    <footer>© Hercule Project — Univers & défis sportifs • 2025</footer>
-  </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- How it works -->
+    <section id="comment-ca-marche">
+      <h2>Comment ça marche ?</h2>
+      <div class="grid cols-3">
+        <div class="card step">
+          <div class="num">1</div>
+          <div>
+            <h3>Inscris-toi</h3>
+            <p class="muted">Paiement unique de <strong>9,90 €</strong> pour accéder à la saison en cours.</p>
+          </div>
+        </div>
+        <div class="card step">
+          <div class="num">2</div>
+          <div>
+            <h3>Accède aux 12 défis</h3>
+            <p class="muted">Chaque épreuve est expliquée (texte + GIF). Temps limité pour compléter la série.</p>
+          </div>
+        </div>
+        <div class="card step">
+          <div class="num">3</div>
+          <div>
+            <h3>Valide & progresse</h3>
+            <p class="muted">Gagne de l’XP et des <em>Jetons d’Hercule</em> pour grimper au classement et débloquer des récompenses.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Levels -->
+    <section id="travaux">
+      <h2>Les Travaux d’Hercule — version moderne</h2>
+      <p class="muted">Une progression inspirée de la mythologie, pensée pour le fitness, le cardio et le gainage. <em>Exemples :</em></p>
+      <div class="grid cols-3">
+        <div class="card">
+          <h3>🔰 Apprenti — <em>The Three</em></h3>
+          <p class="muted">3 min d’effort • 3 km de déplacement (marche ou course)</p>
+        </div>
+        <div class="card">
+          <h3>⚔️ Guerrier — <em>The Four</em></h3>
+          <p class="muted">4 min d’effort • 4 km</p>
+        </div>
+        <div class="card">
+          <h3>🛡️ Champion — <em>The Five</em></h3>
+          <p class="muted">5 min d’effort • 5 km</p>
+        </div>
+      </div>
+      <p class="tiny muted">Note : Pour les défis de déplacement, tu peux choisir <strong>marche</strong> ou <strong>course</strong> (ou <strong>vélo</strong> si précisé) — mais un seul mode par défi.</p>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Rewards -->
+    <section id="recompenses">
+      <h2>Progression & récompenses</h2>
+      <div class="grid cols-3">
+        <div class="card">
+          <h3>📈 XP</h3>
+          <p class="muted">Gagne de l’XP en validant les épreuves. Monte de rang et débloque des titres.</p>
+        </div>
+        <div class="card">
+          <h3>🪙 Jetons d’Hercule</h3>
+          <p class="muted">Des pièces “mythologiques” à collectionner et à dépenser.</p>
+          <ul class="list">
+            <li>Autocollant — <strong>300</strong> jetons</li>
+            <li>Réduction de 5 € — <strong>500</strong> jetons</li>
+            <li>T-shirt — <strong>1000</strong> jetons</li>
+            <li>Médaille — <strong>1500</strong> jetons</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🏆 Classements & saisons</h3>
+          <p class="muted">Participe à des saisons thématiques, compare tes scores et grimpe au classement.</p>
+        </div>
+      </div>
+      <p class="pill" style="margin-top:10px">💡 Astuce : les jetons s’obtiennent en validant des défis, en complétant une série, et lors d’événements spéciaux.</p>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Values -->
+    <section id="valeurs">
+      <h2>Esprit & valeurs</h2>
+      <div class="grid cols-3">
+        <div class="card">
+          <h3>Accessibilité</h3>
+          <p class="muted">Des défis réalisables chez soi, sans matériel, avec des variantes pour débuter.</p>
+        </div>
+        <div class="card">
+          <h3>Motivation par le jeu</h3>
+          <p class="muted">Univers mythologique, progression RPG, récompenses et quêtes spéciales.</p>
+        </div>
+        <div class="card">
+          <h3>Communauté</h3>
+          <p class="muted">Classements, partages sur les réseaux, défis entre amis ou en entreprise.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq">
+      <h2>FAQ rapide</h2>
+      <div class="grid cols-3">
+        <details class="card">
+          <summary>Faut-il un bon niveau sportif ?</summary>
+          <p class="muted">Non. Les défis sont progressifs, avec des consignes claires et des options pour débuter.</p>
+        </details>
+        <details class="card">
+          <summary>Peut-on faire les défis dehors ?</summary>
+          <p class="muted">Oui. Marche, course (ou vélo si précisé). Choisis <em>un seul</em> mode par défi.</p>
+        </details>
+        <details class="card">
+          <summary>Combien de temps pour faire les 12 défis ?</summary>
+          <p class="muted">Un temps limité (à définir pour la saison en cours). L’objectif est de te challenger.</p>
+        </details>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- CTA -->
+    <section id="inscription" class="center">
+      <h2>Prêt à relever les Travaux d’Hercule ?</h2>
+      <p class="muted">Inscris-toi maintenant et débute la saison : 12 défis, XP, Jetons d’Hercule et récompenses.</p>
+      <a class="cta" href="#">Je m’inscris — 9,90 €</a>
+      <p class="tiny muted" style="margin-top:8px">Le paiement et l’accès aux défis seront disponibles dès l’ouverture officielle.</p>
+    </section>
+  </main>
+
+  <footer class="container center">
+    <p class="tiny">© Hercule Project — 2025</p>
+  </footer>
+
+  <script>
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        const href=a.getAttribute('href'); if(href==="#"||!href.startsWith("#")) return;
+        const el=document.querySelector(href); if(!el) return;
+        e.preventDefault(); el.scrollIntoView({behavior:'smooth',block:'start'});
+      });
+    });
+  </script>
 </body>
 </html>
