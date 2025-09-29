@@ -1,61 +1,83 @@
-(function(){
-  const host = document.getElementById('site-header');
-  if(!host){ return; }
-  const path = host.getAttribute('data-header');
-  if(!path){ console.warn('header.js: missing data-header path'); return; }
-  fetch(path, {credentials:'same-origin'})
-    .then(r => r.text())
-    .then(html => { host.innerHTML = html; })
-    .catch(err => {
-      console.error('header.js: failed to load header', err);
-      host.innerHTML = '<div style="padding:8px;border:1px solid #555;border-radius:8px">Menu indisponible</div>';
-    });
-})();
 
 (function () {
-  // Attendre que le header soit injecté si tu le charges dynamiquement
-  function initNav() {
-    const nav = document.querySelector('.nav');
-    const toggle = document.querySelector('.nav-toggle');
-    const links = document.getElementById('nav-links');
+  function initNav(scope) {
+    const root = scope || document;
+    const nav = root.querySelector('.nav');
+    const toggle = root.querySelector('.nav-toggle');
+    const links = root.getElementById ? root.getElementById('nav-links') : document.getElementById('nav-links');
+
     if (!nav || !toggle || !links) return;
 
     // Toggle open/close
-    toggle.addEventListener('click', function () {
-      const isOpen = nav.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', String(isOpen));
+    function closeMenu() {
+      nav.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+    function openMenu() {
+      nav.classList.add('is-open');
+      toggle.setAttribute('aria-expanded', 'true');
+    }
+    function toggleMenu() {
+      if (nav.classList.contains('is-open')) closeMenu();
+      else openMenu();
+    }
+
+    toggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      toggleMenu();
     });
 
-    // Fermer le menu quand on clique un lien (pratique sur mobile)
+    // Close on link click
     links.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        nav.classList.remove('is-open');
-        toggle.setAttribute('aria-expanded', 'false');
-      });
+      a.addEventListener('click', () => closeMenu());
     });
 
-    // Fermer si on clique en dehors (mobile)
+    // Close when clicking outside
     document.addEventListener('click', (e) => {
-      if (!nav.contains(e.target)) {
-        nav.classList.remove('is-open');
-        toggle.setAttribute('aria-expanded', 'false');
-      }
+      if (!nav.contains(e.target)) closeMenu();
     });
 
-    // Fermer sur Escape
+    // Close on Escape
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        nav.classList.remove('is-open');
-        toggle.setAttribute('aria-expanded', 'false');
-      }
+      if (e.key === 'Escape') closeMenu();
+    });
+
+    // Close on resize to desktop
+    let lastW = window.innerWidth;
+    window.addEventListener('resize', () => {
+      const w = window.innerWidth;
+      if (w !== lastW && w > 900) closeMenu();
+      lastW = w;
     });
   }
 
-  // Si le header est chargé via fetch/innerHTML, lance initNav après insertion
-  // Sinon, lance-le directement
+  async function injectHeader() {
+    const mount = document.getElementById('site-header');
+    if (!mount) {
+      // If there's no mount, still try to init a statically present header
+      initNav(document);
+      return;
+    }
+
+    const url = mount.getAttribute('data-header') || 'header-root.html';
+
+    try {
+      const res = await fetch(url, { credentials: 'same-origin' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const html = await res.text();
+      mount.innerHTML = html;
+      // After injection, initialize nav within this mount
+      initNav(mount);
+    } catch (err) {
+      console.error('[header.js] Échec du chargement du header:', err);
+      // As a fallback, try to init any pre-existing nav
+      initNav(document);
+    }
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initNav);
+    document.addEventListener('DOMContentLoaded', injectHeader);
   } else {
-    initNav();
+    injectHeader();
   }
 })();
