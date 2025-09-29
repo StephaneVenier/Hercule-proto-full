@@ -1,46 +1,199 @@
-:root{--bg:#050507;--panel:#0a0a0b;--ink:#e7e7ea;--muted:#a0a0ad;--stroke:#1f1f25;--radius:16px;--shadow:0 10px 30px rgba(0,0,0,.35);}
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;background:radial-gradient(100% 100% at 50% 0%, #0a0a0b 0%, var(--bg) 60%);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;scroll-behavior:smooth}
-a{color:inherit;text-decoration:none}
-.wrap{max-width:1120px;margin:0 auto;padding:40px 16px}
-.nav{position:sticky;top:0;z-index:20;backdrop-filter:saturate(1.2) blur(10px);background:rgba(5,5,8,.6);border-bottom:1px solid #1f1f25}
-.nav .row{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:1120px;margin:0 auto;padding:10px 16px}
-.brand{font-weight:900;letter-spacing:.3px}
-.brand .accent{color:#facc15}
-.nav a.btn{border:1px solid #3f3f46;border-radius:999px;padding:8px 14px;font-weight:700}
-.nav a.btn.primary{background:#facc15;color:#111827;border-color:#facc15}
-.hero{position:relative;isolation:isolate;background:linear-gradient(135deg,#18181b,#000);border-radius:20px;padding:36px 26px;box-shadow:var(--shadow)}
-.title{font-weight:900;line-height:1.1;margin:0;font-size:clamp(28px,3.8vw,48px)}
-.title .accent{color:#facc15}
-.lead{color:var(--muted);margin:12px 0 0;font-size:clamp(14px,2.1vw,18px)}
-.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
-.btn{border-radius:999px;padding:12px 18px;font-weight:700;font-size:14px;border:1px solid #3f3f46;background:#0e0e12;color:#eaeaf0;cursor:pointer;transition:.2s;display:inline-block}
-.btn:hover{background:#15151b}
-.btn.primary{background:#facc15;color:#111827;border-color:#facc15}
-.section{margin-top:22px;border:1px solid #3f3f46;background:#0a0a0b;border-radius:16px;padding:20px}
-.grid{display:grid;grid-template-columns:1fr;gap:14px}
-@media(min-width:860px){.grid.cols-3{grid-template-columns:repeat(3,1fr)}.grid.cols-2{grid-template-columns:repeat(2,1fr)}}
-.step{border:1px solid #26262f;border-radius:14px;padding:16px;background:#0e0e12}
-.step h3{margin:6px 0 0;font-size:18px}
-.step p{margin:6px 0 0;color:#c9c9d2}
-.legend{margin-top:18px;border:1px solid #3f3f46;background:#0a0a0b;border-radius:16px;padding:14px}
-.legend .bar{margin-top:10px;height:10px;width:100%;border-radius:999px;background:#1c1c22;overflow:hidden}
-.legend .bar>span{display:block;height:100%;background:linear-gradient(90deg,#34d399,#8b5cf6,#facc15)}
-.levels{display:grid;grid-template-columns:1fr;gap:14px;margin-top:16px}
-@media(min-width:860px){.levels{grid-template-columns:1fr 1fr;gap:18px}}
-.card{border-radius:16px;background:#18181b;border:1px solid #3f3f46;padding:16px}
-.card h4{margin:0;font-size:18px}
-.meta{color:#a8a8b3;font-size:13px;margin-top:4px}
-.blurb{color:#d6d6db;margin-top:8px}
-.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.chip{border:1px solid #3f3f46;background:#0d0d11;border-radius:12px;padding:8px 12px;font-size:13px;color:#e5e7eb}
-.pricing{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
-.price{font-size:34px;font-weight:900;color:#facc15}
-.faq details{background:#0e0e12;border:1px solid #2a2a32;padding:14px;border-radius:12px}
-.faq summary{cursor:pointer;font-weight:700}
-footer{margin-top:30px;color:#7e7e8a;font-size:12px;text-align:center}
-nav .links a{margin-left:8px}
 
-.teaser{margin:24px 0;padding:16px;border:1px solid rgba(227,179,65,.28);border-radius:14px;background:linear-gradient(180deg,rgba(227,179,65,.06),rgba(15,17,23,.9))}
-.teaser .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-.teaser .chip{font-size:12px;padding:4px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.14);color:#c9cacc}
+/* =========================================================
+   Hercule Project — style.css (full replacement)
+   Palette: gold #e3b341 · ink #0f1117 · wash #0d0f16
+   ========================================================= */
+
+:root{
+  --gold:#e3b341;
+  --ink:#0f1117;
+  --wash:#0d0f16;
+  --muted:#a1a1aa;
+  --text:#e5e7eb;
+  --ok:#22c55e;
+  --danger:#ef4444;
+  --card:linear-gradient(180deg,#0f1117,rgba(8,10,14,.9));
+}
+
+/* ----- Reset & base ----- */
+*{box-sizing:border-box}
+html,body{height:100%}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--wash);
+  color:var(--text);
+  font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Inter,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+.container{max-width:1080px;margin:0 auto;padding:24px}
+
+/* ----- Typo helpers ----- */
+h1,h2,h3,h4{margin:0 0 8px 0;line-height:1.25}
+h1{font-size:clamp(28px,4vw,40px);letter-spacing:.3px}
+h2{font-size:clamp(22px,3vw,28px)}
+h3{font-size:clamp(18px,2.4vw,22px)}
+.lead{color:#c9cad3;font-size:clamp(16px,2.2vw,18px)}
+.muted{color:var(--muted)}
+.tiny{font-size:12px}
+.center{text-align:center}
+.accent{color:var(--gold)}
+
+/* ----- Buttons / links ----- */
+.button,.cta,.btn{
+  display:inline-block;
+  padding:10px 14px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.06);
+  text-decoration:none;
+  font-weight:600;
+  background:var(--gold);
+  color:#1a1405;
+  transition:transform .15s ease, box-shadow .15s ease, background .2s ease, color .2s ease;
+}
+.button:hover,.cta:hover,.btn:hover{
+  transform:translateY(-1px);
+  box-shadow:0 8px 24px rgba(227,179,65,.2);
+}
+
+/* ----- Cards, grids, dividers ----- */
+.grid{display:grid;gap:16px}
+.cols-2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.cols-3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{
+  border:1px solid rgba(227,179,65,.18);
+  border-radius:16px;
+  padding:16px;
+  background:var(--card);
+}
+.divider{
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(227,179,65,.25),transparent);
+  margin:18px 0;
+}
+
+/* ----- Hero & blockquote ----- */
+.hero{
+  position:relative;margin:8px 0 20px;padding:28px;
+  border:1px solid rgba(227,179,65,.28);
+  border-radius:20px;
+  background:linear-gradient(180deg,rgba(227,179,65,.06),rgba(15,17,23,.9));
+}
+.badge{
+  display:inline-flex;gap:8px;align-items:center;
+  font-size:12px;padding:6px 10px;border-radius:999px;
+  border:1px solid rgba(227,179,65,.35);
+  background:rgba(227,179,65,.06);color:#f5e9c5
+}
+.blockquote{
+  border-left:3px solid var(--gold);
+  padding:14px 16px;margin:14px 0;border-radius:8px;
+  background:rgba(227,179,65,.06)
+}
+
+/* ----- Steps (Comment ça marche) ----- */
+.step{display:flex;gap:12px;align-items:flex-start}
+.step .num{
+  flex:0 0 36px;height:36px;border-radius:10px;
+  background:rgba(227,179,65,.1);
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(227,179,65,.3);
+  font-weight:700;color:#f5e9c5
+}
+.list{margin:8px 0 0 0;padding-left:18px}
+
+/* ----- FAQ ----- */
+.faq details{border:1px solid rgba(227,179,65,.2);border-radius:12px;padding:12px;background:#0e121b}
+.faq summary{cursor:pointer;font-weight:600}
+
+/* ----- Pills & badges ----- */
+.pill{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 10px;border:1px solid rgba(227,179,65,.25);
+  border-radius:999px;background:rgba(227,179,65,.08);color:#f5e9c5;font-size:14px
+}
+
+/* ----- Footer ----- */
+footer{opacity:.8;font-size:13px;margin:24px 0 8px}
+
+/* =========================================================
+   NAVIGATION (header-root.html)
+   - Desktop: liens espacés avec gap
+   - Mobile <900px: burger + panneau déroulant
+   ========================================================= */
+.nav{
+  background:var(--wash);
+  border-bottom:1px solid rgba(227,179,65,.25);
+  padding:12px 20px;
+}
+.nav .row{display:flex;justify-content:space-between;align-items:center}
+.nav .brand{
+  font-weight:700;color:var(--gold);font-size:18px;display:flex;align-items:center
+}
+.nav .links{display:flex;gap:20px}
+.nav .btn{
+  background:transparent;border:0;color:var(--text);font-weight:500;
+  padding:6px 10px;border-radius:8px;transition:background .2s ease,color .2s ease
+}
+.nav .btn:hover{background:rgba(227,179,65,.15);color:var(--gold)}
+.nav .btn.primary{background:var(--gold);color:#1a1405;font-weight:600}
+
+/* Burger button */
+.nav-toggle{
+  display:none; /* visible en mobile */
+  width:42px;height:36px;border:1px solid rgba(227,179,65,.35);
+  border-radius:10px;background:rgba(227,179,65,.06);cursor:pointer;
+  align-items:center;justify-content:center;gap:4px;padding:6px 8px
+}
+.nav-toggle .bar{display:block;width:22px;height:2px;background:var(--gold);border-radius:2px}
+
+/* Animation du burger */
+.nav.is-open .nav-toggle{background:rgba(227,179,65,.14)}
+.nav.is-open .nav-toggle .bar:nth-child(2){opacity:0}
+.nav.is-open .nav-toggle .bar:nth-child(1){transform:translateY(4px) rotate(45deg)}
+.nav.is-open .nav-toggle .bar:nth-child(3){transform:translateY(-4px) rotate(-45deg)}
+.nav-toggle .bar{transition:transform .2s ease,opacity .2s ease}
+
+/* Sticky option (ajoute .sticky à .nav si besoin) */
+.nav.sticky{position:sticky;top:0;z-index:200;backdrop-filter:saturate(1.1) blur(6px)}
+
+/* ----- Responsive nav ----- */
+@media (max-width: 900px){
+  .nav .row{position:relative}
+  .nav-toggle{display:flex}
+  .nav .links{
+    position:absolute; right:20px; left:20px; top:58px;
+    display:flex; flex-direction:column; gap:10px;
+    background:#0f1117;
+    border:1px solid rgba(227,179,65,.25); border-radius:12px;
+    padding:12px; max-height:0; overflow:hidden;
+    transition:max-height .25s ease, opacity .2s ease;
+    opacity:0; z-index:50;
+  }
+  .nav.is-open .links{max-height:70vh; opacity:1}
+  .nav .btn{padding:10px 12px}
+}
+
+/* =========================================================
+   UTILITAIRES
+   ========================================================= */
+.hidden{display:none !important}
+.max-w-sm{max-width:640px}
+.max-w-md{max-width:820px}
+.round{border-radius:12px}
+.border{border:1px solid rgba(227,179,65,.25)}
+.shadow{box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.pad{padding:16px}
+
+/* =========================================================
+   INTERACTIONS
+   ========================================================= */
+@media (prefers-reduced-motion:no-preference){
+  .cta,.btn{transition:transform .15s ease, box-shadow .15s ease}
+}
+
+/* End of file */
