@@ -1,7 +1,18 @@
-<nav class="nav">
+<nav class="nav" role="navigation" aria-label="Navigation principale">
   <div class="row">
-    <div class="brand"><img src="assets/img/logo-hercule.jpg" alt="Hercule Project" style="height:36px;vertical-align:middle;border-radius:6px;margin-right:8px">Hercule <span class="accent">Project</span></div>
-    <div class="links">
+    <div class="brand">
+      <img src="assets/img/logo-hercule.jpg" alt="Hercule Project" style="height:36px;vertical-align:middle;border-radius:6px;margin-right:8px">
+      Hercule <span class="accent">Project</span>
+    </div>
+
+    <!-- Bouton burger (mobile) -->
+    <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-links">
+      <span class="bar" aria-hidden="true"></span>
+      <span class="bar" aria-hidden="true"></span>
+      <span class="bar" aria-hidden="true"></span>
+    </button>
+
+    <div class="links" id="nav-links">
       <a class="btn" href="index.html">Accueil</a>
       <a class="btn" href="concept.html">Concept</a>
       <a class="btn" href="niveaux/index.html">Niveaux</a>
