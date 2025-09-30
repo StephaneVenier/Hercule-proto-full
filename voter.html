@@ -4,164 +4,80 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Voter — Hercule Project</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#0c0f16;          /* bleu nuit */
-      --panel:#101622;
-      --ink:#e8ecf6;
-      --muted:#aab4c8;
-      --accent:#f6c453;      /* or antique */
-      --accent-2:#1f2b44;    /* bleu profond pour bordures */
-      --ok:#4ade80;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0; background:linear-gradient(180deg,#0b0f17, #0b0f17 40%, #0f1726 100%);
-      color:var(--ink); font-family:Manrope,system-ui,Segoe UI,Roboto,Arial,sans-serif;
-      line-height:1.55;
-    }
-
-    /* --- NAVBAR --- */
-    .navbar{
-      position:sticky; top:0; z-index:50;
-      background:linear-gradient(180deg,#0c0f16,#101622);
-      border-bottom:1px solid #1b2a45;
-      box-shadow:0 4px 10px rgba(0,0,0,.35);
-    }
-    .nav-wrap{
-      max-width:1100px; margin:0 auto; padding:12px 18px;
-      display:flex; align-items:center; justify-content:space-between;
-    }
-    .logo{
-      font-weight:800; color:var(--accent); text-decoration:none;
-      font-size:20px; letter-spacing:.5px;
-    }
-    .menu{list-style:none; margin:0; padding:0; display:flex; gap:20px}
-    .menu li{margin:0}
-    .menu a{
-      color:var(--ink); text-decoration:none; font-weight:600; font-size:15px;
-      padding:6px 0; position:relative;
-    }
-    .menu a:hover{color:var(--accent)}
-    .menu a.active{color:var(--accent)}
-
-    /* --- LAYOUT --- */
-    .wrap{max-width:1100px; margin:0 auto; padding:28px 18px 72px}
-    h1{font-size:clamp(28px,3.6vw,44px); margin:8px 0 8px; letter-spacing:.2px}
-    .lead{color:var(--muted); font-size:clamp(14px,1.6vw,18px)}
-    .grid{display:grid; gap:16px}
-    .cols-2{grid-template-columns:1fr; }
-    .cols-3{grid-template-columns:1fr; }
-    @media(min-width:880px){ .cols-2{grid-template-columns:1.2fr .8fr} .cols-3{grid-template-columns:1fr 1fr 1fr} }
-
-    .card{
-      background:linear-gradient(180deg,#0f1625,#0c131f); border:1px solid #1b2a45;
-      border-radius:16px; padding:18px; box-shadow:0 10px 28px rgba(0,0,0,.35);
-    }
-    .card h3{margin:0 0 10px; font-size:20px}
-    .cta{
-      display:inline-flex; align-items:center; gap:10px;
-      background:linear-gradient(180deg,#1f2b44,#182338); color:white; border:1px solid #2a3a5d;
-      padding:12px 16px; border-radius:12px; font-weight:700; text-decoration:none;
-      transition:transform .05s ease, box-shadow .2s ease;
-    }
-    .cta:hover{transform:translateY(-1px); box-shadow:0 10px 18px rgba(0,0,0,.25)}
-    .cta.gold{background:linear-gradient(180deg,#f6c453,#e0a93a); color:#201b0a; border:1px solid #e0a93a}
-    .tiny{font-size:12px; color:var(--muted)}
-    .row{display:flex; gap:10px; flex-wrap:wrap}
-    .stat{
-      display:flex; align-items:center; gap:10px; padding:12px 14px; border:1px solid #223254;
-      border-radius:14px; background:#0e1523; color:#dfe7fb; font-weight:700;
-    }
-    .badge{padding:6px 10px; border-radius:999px; border:1px solid #26365c; color:var(--muted); font-weight:700}
-    .list{margin:10px 0 0; padding-left:18px}
-    .list li{margin:6px 0}
-    .imgbox{
-      border-radius:16px; overflow:hidden; border:1px solid #26365c; background:#0b111d;
-    }
-    .imgbox img{display:block; width:100%; height:auto}
-    table{width:100%; border-collapse:collapse; margin-top:8px}
-    th,td{padding:10px 12px; border-bottom:1px solid #1b2a45; text-align:left}
-    th{color:#cfd8ee; font-weight:800; border-bottom:1px solid #2a3a5d; background:#0f1728}
-    .check{color:var(--ok); font-weight:800}
-    .goal{height:10px; background:#0e1422; border:1px solid #1b2a45; border-radius:999px; position:relative; overflow:hidden}
-    .goal > i{position:absolute; inset:0; width:0%; background:linear-gradient(90deg,#f6c453,#ffd88a); box-shadow:0 0 16px rgba(246,196,83,.35) inset}
-    .muted{color:var(--muted)}
-    footer{margin-top:28px; color:#93a0ba}
-    .note{border-left:3px solid var(--accent); padding-left:12px}
-  </style>
+  <!-- On s'appuie sur ta feuille de style globale -->
+  <link rel="stylesheet" href="/style.css">
+  <meta name="description" content="Vote, partage et gagne des Jetons d’Hercule à échanger contre des récompenses." />
 </head>
 <body>
+  <!-- Header commun du site -->
+  <div id="site-header" data-header="/header-root.html"></div>
+  <script src="/assets/js/header.js"></script>
 
-  <!-- NAVBAR -->
-<div id="site-header" data-header="/header-root.html"></div>
-<script src="/assets/js/header.js"></script>
-
-  <div class="wrap">
-    <header class="grid cols-2" style="align-items:center; gap:22px">
+  <main class="wrap" style="padding-bottom:72px">
+    <!-- HERO -->
+    <header class="grid cols-2" style="align-items:center;gap:22px;margin-top:16px">
       <div>
         <div class="badge">Page communauté</div>
-        <h1>Soutiens le <span style="color:var(--accent)">Hercule Project</span> 💪</h1>
+        <h1>Soutiens le <span class="accent">Hercule Project</span> 💪</h1>
         <p class="lead">Vote pour nous, partage l’aventure et gagne des <strong>Jetons d’Hercule</strong> à échanger contre des récompenses.</p>
-        <div class="row" style="margin-top:12px">
-          <div class="stat">🔥 Votes ce mois-ci : <span id="voteMonth">0</span></div>
+        <div class="row" style="margin-top:12px;gap:10px;flex-wrap:wrap">
+          <div class="stat">🔥 Votes ce mois‑ci : <span id="voteMonth">0</span></div>
           <div class="stat">🎖️ Objectif : <span id="goal">500</span></div>
           <div class="stat">🏆 Top supporters : <span id="top">—</span></div>
         </div>
         <div class="goal" style="margin-top:12px"><i id="bar"></i></div>
         <p class="tiny">Astuce : chaque <strong>vote + partage</strong> = bonus de jetons 💎</p>
       </div>
-      <div class="imgbox">
-        <!-- Mets ton image ici -->
-        <img src="assets/jetons-hercule.png" alt="Infographie Jetons d’Hercule">
-      </div>
+      <figure class="imgbox">
+        <img src="/assets/img/jetons-hercule.png" alt="Jetons d’Hercule — illustration" loading="lazy">
+      </figure>
     </header>
 
-    <main class="grid cols-3" style="margin-top:18px">
-      <!-- Bloc VOTER -->
-      <section class="card">
+    <!-- 3 BLOCS PRINCIPAUX -->
+    <section class="grid cols-3" style="margin-top:18px">
+      <!-- 1) Voter -->
+      <article class="card">
         <h3>1) Voter</h3>
-        <p class="muted">Clique sur un des topsites ci-dessous pour déposer ton vote.</p>
-        <div class="row" style="margin-top:10px">
+        <p class="muted">Choisis un site de vote ci‑dessous, clique et dépose ton vote.</p>
+        <div class="row" style="margin-top:10px;gap:10px;flex-wrap:wrap">
           <!-- Remplace les href par tes liens réels -->
-          <a class="cta" href="https://exemple-topsite-1.com" target="_blank" rel="noopener">⭐ Voter (TopSite 1)</a>
-          <a class="cta" href="https://exemple-topsite-2.com" target="_blank" rel="noopener">⭐ Voter (TopSite 2)</a>
-          <a class="cta" href="https://exemple-topsite-3.com" target="_blank" rel="noopener">⭐ Voter (TopSite 3)</a>
+          <a class="btn" href="https://exemple-topsite-1.com" target="_blank" rel="noopener">⭐ Voter (TopSite 1)</a>
+          <a class="btn" href="https://exemple-topsite-2.com" target="_blank" rel="noopener">⭐ Voter (TopSite 2)</a>
+          <a class="btn" href="https://exemple-topsite-3.com" target="_blank" rel="noopener">⭐ Voter (TopSite 3)</a>
         </div>
         <p class="tiny">Après ton vote, reviens ici pour partager et récupérer tes jetons.</p>
-      </section>
+      </article>
 
-      <!-- Bloc PARTAGER -->
-      <section class="card">
+      <!-- 2) Partager -->
+      <article class="card">
         <h3>2) Partager l’aventure</h3>
-        <p class="muted">Un message pré-rempli sera proposé. Si ton navigateur ne le supporte pas, on copie le texte pour toi.</p>
-        <button id="shareBtn" class="cta gold">📣 Partager & gagner des jetons</button>
+        <p class="muted">Un message pré‑rempli sera proposé. Si ton navigateur ne le permet pas, on copie le texte pour toi.</p>
+        <button id="shareBtn" class="btn primary" style="margin-top:4px">📣 Partager & gagner des jetons</button>
         <p id="shareState" class="tiny" style="margin-top:8px"></p>
         <div class="note" style="margin-top:10px">
           <p class="tiny"><strong>Gain type :</strong> Vote = +5 jetons · Vote + Partage = +15 jetons.</p>
         </div>
-      </section>
+      </article>
 
-      <!-- Bloc RÉCOMPENSES -->
-      <section class="card">
+      <!-- 3) Récompenses -->
+      <article class="card">
         <h3>Récompenses</h3>
-        <table>
+        <table class="table">
           <thead><tr><th>Récompense</th><th>Coût</th></tr></thead>
           <tbody>
             <tr><td>Autocollant</td><td>300 jetons</td></tr>
-            <tr><td>T-shirt exclusif</td><td>1000 jetons</td></tr>
+            <tr><td>T‑shirt exclusif</td><td>1000 jetons</td></tr>
             <tr><td>Médaille collector</td><td>1500 jetons</td></tr>
             <tr><td>Réduction de 5 € sur un niveau</td><td>500 jetons</td></tr>
           </tbody>
         </table>
         <p class="tiny">Les récompenses physiques sont en quantité limitée.</p>
-      </section>
-    </main>
+      </article>
+    </section>
 
-    <section class="grid cols-2" style="margin-top:16px; align-items:start">
-      <div class="card">
+    <!-- Comment gagner / dépenser -->
+    <section class="grid cols-2" style="margin-top:16px;align-items:start">
+      <article class="card">
         <h3>Comment gagner des jetons</h3>
         <ul class="list">
           <li>Voter → <strong>+5</strong> jetons</li>
@@ -170,8 +86,8 @@
           <li>Top 10 mensuel → <strong>+100</strong> jetons</li>
           <li>Parrainage validé → <strong>+200</strong> jetons</li>
         </ul>
-      </div>
-      <div class="card">
+      </article>
+      <article class="card">
         <h3>Comment dépenser</h3>
         <ul class="list">
           <li><span class="check">✔</span> Badges (50 jetons)</li>
@@ -179,25 +95,28 @@
           <li><span class="check">✔</span> Boost XP (100 jetons)</li>
           <li><span class="check">✔</span> Cosmétiques virtuels (75 jetons)</li>
         </ul>
-      </div>
+      </article>
     </section>
 
-    <footer>
-      <p class="tiny">En votant/partageant, tu acceptes nos <a href="#" style="color:var(--accent)">CGU</a>. Anti-triche : validations automatiques + contrôle manuel ponctuel.</p>
+    <footer style="margin-top:28px">
+      <p class="tiny">En votant/partageant, tu acceptes nos <a href="/cgu.html" class="accent">CGU</a>. Anti‑triche : validations automatiques + contrôle manuel ponctuel.</p>
     </footer>
-  </div>
+  </main>
 
+  <!-- JS spécifique à la page (léger, compatible avec ton style global) -->
   <script>
     // --------- MOCK compteur votes (à brancher sur ton backend) ----------
     const monthVotes = 257;           // TODO: valeur issue de ton API
     const monthGoal  = 500;           // objectif
     const topNames   = ["Léo","Nora","Axel"]; // top supporters
 
+    // Rendus
     document.getElementById('voteMonth').textContent = monthVotes;
     document.getElementById('goal').textContent = monthGoal;
     document.getElementById('top').textContent = topNames.join(", ");
     const pct = Math.min(100, Math.round((monthVotes / monthGoal) * 100));
-    document.getElementById('bar').style.width = pct + "%";
+    const bar = document.getElementById('bar');
+    if (bar) bar.style.width = pct + "%";
 
     // --------- Partage (Web Share API + fallback copy) -------------------
     const shareBtn = document.getElementById('shareBtn');
@@ -212,15 +131,22 @@
           state.textContent = "Merci ! Partage effectué. +15 jetons seront crédités ✨";
         } else {
           await navigator.clipboard.writeText(`${shareMsg} ${shareUrl}`);
-          state.textContent = "Message copié ! Colle-le sur tes réseaux et récupère +15 jetons ✨";
+          state.textContent = "Message copié ! Colle‑le sur tes réseaux et récupère +15 jetons ✨";
         }
-        // TODO: appeler ton endpoint pour créditer les jetons après vérification.
-        // fetch('/api/credit-share', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({userId, proof})})
+        // TODO: fetch('/api/credit-share', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({kind:'share_social'})})
       }catch(e){
         state.textContent = "Partage annulé.";
       }
     }
-    shareBtn.addEventListener('click', doShare);
+    if (shareBtn) shareBtn.addEventListener('click', doShare);
+
+    // --------- Activer l'onglet actif dans le header ---------------------
+    // Si ton header-root.html utilise <a href="/voter.html">, le script header.js
+    // peut gérer l'état actif automatiquement. Sinon :
+    document.addEventListener('DOMContentLoaded', ()=>{
+      const link = document.querySelector('a[href$="/voter.html"]');
+      if(link) link.classList.add('active');
+    });
   </script>
 </body>
 </html>
