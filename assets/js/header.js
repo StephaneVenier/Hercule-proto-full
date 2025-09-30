@@ -1,14 +1,39 @@
 
 (function () {
+  // Inline fallback HTML if fetch fails
+  const FALLBACK_HEADER_HTML = `<nav class="nav" role="navigation" aria-label="Navigation principale">
+  <div class="row">
+    <div class="brand">
+      <img src="/assets/img/logo-hercule.jpg" alt="" aria-hidden="true" style="height:36px;vertical-align:middle;border-radius:6px;margin-right:8px">
+      Hercule <span class="accent">Project</span>
+    </div>
+    <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-links">
+      <span class="bar" aria-hidden="true"></span>
+      <span class="bar" aria-hidden="true"></span>
+      <span class="bar" aria-hidden="true"></span>
+    </button>
+    <div class="links" id="nav-links">
+      <a class="btn" href="/index.html">Accueil</a>
+      <a class="btn" href="/concept.html">Concept</a>
+      <a class="btn" href="/niveaux/">Niveaux</a>
+      <a class="btn" href="/defis-equipes/">Défis d'équipes</a>
+      <a class="btn" href="/entreprises.html">Entreprises</a>
+      <a class="btn" href="/participer.html">Participer</a>
+      <a class="btn" href="/faq.html">FAQ</a>
+      <a class="btn" href="/voter.html">Voter</a>
+      <a class="btn" href="/boutique.html">Boutique</a>
+      <a class="btn primary" href="/blog.html">Blog</a>
+    </div>
+  </div>
+</nav>`;
+
   function initNav(scope) {
     const root = scope || document;
     const nav = root.querySelector('.nav');
     const toggle = root.querySelector('.nav-toggle');
     const links = root.getElementById ? root.getElementById('nav-links') : document.getElementById('nav-links');
-
     if (!nav || !toggle || !links) return;
 
-    // Toggle open/close
     function closeMenu() {
       nav.classList.remove('is-open');
       toggle.setAttribute('aria-expanded', 'false');
@@ -17,32 +42,16 @@
       nav.classList.add('is-open');
       toggle.setAttribute('aria-expanded', 'true');
     }
-    function toggleMenu() {
-      if (nav.classList.contains('is-open')) closeMenu();
-      else openMenu();
-    }
 
     toggle.addEventListener('click', function (e) {
       e.stopPropagation();
-      toggleMenu();
+      if (nav.classList.contains('is-open')) closeMenu(); else openMenu();
     });
 
-    // Close on link click
-    links.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => closeMenu());
-    });
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+    document.addEventListener('click', (e) => { if (!nav.contains(e.target)) closeMenu(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
 
-    // Close when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!nav.contains(e.target)) closeMenu();
-    });
-
-    // Close on Escape
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeMenu();
-    });
-
-    // Close on resize to desktop
     let lastW = window.innerWidth;
     window.addEventListener('resize', () => {
       const w = window.innerWidth;
@@ -53,26 +62,24 @@
 
   async function injectHeader() {
     const mount = document.getElementById('site-header');
+    const explicitUrl = mount ? mount.getAttribute('data-header') : null;
+    const url = explicitUrl || '/header-root.html';
+
     if (!mount) {
-      // If there's no mount, still try to init a statically present header
       initNav(document);
       return;
     }
-
-    const url = mount.getAttribute('data-header') || 'header-root.html';
 
     try {
       const res = await fetch(url, { credentials: 'same-origin' });
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const html = await res.text();
       mount.innerHTML = html;
-      // After injection, initialize nav within this mount
-      initNav(mount);
     } catch (err) {
-      console.error('[header.js] Échec du chargement du header:', err);
-      // As a fallback, try to init any pre-existing nav
-      initNav(document);
+      console.error('[header.js] Échec du chargement du header depuis', url, err);
+      mount.innerHTML = FALLBACK_HEADER_HTML;
     }
+    initNav(mount);
   }
 
   if (document.readyState === 'loading') {
