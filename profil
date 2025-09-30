@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Profil — Hercule Project × A-Quest</title>
+
+  <!-- ✅ Ton style global -->
+  <link rel="stylesheet" href="/style.css">
+
+  <!-- Police (optionnel si déjà incluse globalement) -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <!-- ✅ Styles additionnels minimaux, namespacés pour ne rien casser -->
+  <style>
+    .profile-page { padding: 20px; }
+    .profile-card{
+      background: var(--panel, #101622);
+      border: 1px solid rgba(246,196,83,.25);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 0 12px rgba(0,0,0,.35);
+      max-width: 1000px;
+      margin: 24px auto;
+    }
+    .profile-header{ display:flex; align-items:center; gap:20px; flex-wrap:wrap }
+    .profile-avatar{
+      width:100px;height:100px;border-radius:50%;
+      border:3px solid var(--accent, #f6c453);
+      background:url("/assets/img/avatar.png") center/cover no-repeat;
+    }
+    .profile-header h1{ margin:0; font-size:1.6rem; color:var(--accent,#f6c453) }
+    .muted{ color:var(--muted,#aab4c8) }
+
+    .stats-grid{ display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin:20px 0 }
+    .stat{
+      background: var(--accent-2,#1f2b44);
+      border-radius:14px; padding:16px; text-align:center
+    }
+    .progress-wrap{ margin-top:8px }
+    .progress-bar{ height:12px; background:#222c3f; border-radius:8px; overflow:hidden }
+    .progress{ height:12px; width:65%; background: var(--ok,#4ade80) }
+
+    .reward-list{ display:flex; flex-wrap:wrap; gap:12px; margin-top:12px }
+    .reward{
+      flex:1 1 180px; background: var(--accent-2,#1f2b44);
+      border-radius:10px; padding:12px; text-align:center
+    }
+
+    /* petit helper pour le header interne */
+    .subhead{
+      display:flex; align-items:center; gap:10px; flex-wrap:wrap
+    }
+    .ak-badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:6px 10px; border-radius:999px;
+      background: rgba(246,196,83,.12); border:1px solid rgba(246,196,83,.35)
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ Ton bandeau/menu existant (reprend ta structure et classes) -->
+  <nav class="nav" role="navigation" aria-label="Navigation principale">
+    <div class="row">
+      <div class="brand">
+        <img src="/assets/img/logo-hercule.jpg" alt="Hercule Project" style="height:36px;vertical-align:middle;border-radius:6px;margin-right:8px">
+        Hercule <span class="accent">Project</span>
+      </div>
+
+      <!-- Burger mobile -->
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-links">
+        <span class="bar" aria-hidden="true"></span>
+        <span class="bar" aria-hidden="true"></span>
+        <span class="bar" aria-hidden="true"></span>
+      </button>
+
+      <div class="links" id="nav-links">
+        <a class="btn" href="/index.html">Accueil</a>
+        <a class="btn" href="/concept.html">Concept</a>
+        <a class="btn" href="/niveaux/index.html">Niveaux</a>
+        <a class="btn" href="/defis-equipes/index.html">Défis d'équipes</a>
+        <a class="btn active" href="/profil.html">Profil</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="profile-page container">
+    <div class="profile-card">
+      <div class="profile-header">
+        <div class="profile-avatar"></div>
+        <div>
+          <h1>Stéphane — Héros en devenir ⚔️</h1>
+          <div class="subhead muted">
+            <span>Niveau actuel : <strong>The Four</strong></span>
+            <span class="ak-badge">💰 Anykoin : <strong>1 240</strong></span>
+            <span class="ak-badge">⭐ XP : <strong>8 750</strong></span>
+          </div>
+          <div class="progress-wrap">
+            <div class="progress-bar"><div class="progress" id="xpProgress"></div></div>
+            <small class="muted">65% vers <strong>The Five</strong></small>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat">
+          <h3 class="accent">🔗 Compte A-Quest</h3>
+          <p class="muted">Synchronisation état : <strong>Connecté</strong></p>
+          <a class="btn" href="#" aria-label="Gérer la connexion A-Quest">Gérer</a>
+        </div>
+        <div class="stat">
+          <h3 class="accent">🏆 Succès</h3>
+          <p><strong>12</strong> débloqués</p>
+          <small class="muted">Dernier : “Sprint d’Hermès”</small>
+        </div>
+        <div class="stat">
+          <h3 class="accent">📈 Semaine</h3>
+          <p class="muted">XP gagnée : <strong>+1 150</strong></p>
+          <p class="muted">Anykoin : <strong>+300</strong></p>
+        </div>
+      </div>
+
+      <h3 class="accent">🎯 Progression Niveaux</h3>
+      <div class="grid cols-3" style="gap:12px">
+        <div class="card">
+          <h4>🔰 The Three</h4>
+          <p class="muted">Terminé • 100%</p>
+        </div>
+        <div class="card">
+          <h4>⚔️ The Four</h4>
+          <p class="muted">En cours • 65%</p>
+        </div>
+        <div class="card">
+          <h4>🛡️ The Five</h4>
+          <p class="muted">Débloqué à 1000 XP</p>
+        </div>
+      </div>
+
+      <h3 class="accent" style="margin-top:22px">🎁 Récompenses</h3>
+      <div class="reward-list">
+        <div class="reward">Autocollant<br><small class="muted">300 Anykoin</small></div>
+        <div class="reward">T-Shirt<br><small class="muted">1000 Anykoin</small></div>
+        <div class="reward">Médaille<br><small class="muted">1500 Anykoin</small></div>
+        <div class="reward">Réduction 5€<br><small class="muted">500 Anykoin</small></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- (facultatif) Footer -->
+  <footer class="footer contai
